@@ -128,23 +128,22 @@ function removeTier(uint256 _index)
 
 ```javascript
 // Using thirdweb SDK
-const contract = await sdk.getContract("CONTRACT_ADDRESS");
-
-await contract.call("createCampaign", [
-  "Campaign Name",
-  "Campaign Description",
-  1000, // Goal amount
-  30, // Duration in days
-]);
+ const contractAddress = await deployPublishedContract({
+        client: client,
+        chain: sepolia, // your network
+        account: account!,
+        contractId: "Crowdfunding",
+        contractParams: {
+          _name: campaignName,
+          _description: campaignDescription,
+          _goal: campaignGoal,
+          _durationInDays: campaignDeadline,
+        },
+        publisher: "0x...",
+        version: "1.0.0",
+  });
 ```
-
-### Contributing to a Campaign
-
-```javascript
-await contract.call("fund", [tierIndex], {
-  value: tierAmount,
-});
-```
+ 
 
 ## Security Features
 
